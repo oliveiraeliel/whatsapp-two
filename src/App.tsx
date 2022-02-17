@@ -1,7 +1,7 @@
 import React from "react";
 
-import { LoginBox } from "./components/GetStarted";
+import { GetStarted } from "./components/";
 
 export const App = () => {
-  return <LoginBox />;
+  return <GetStarted />;
 };

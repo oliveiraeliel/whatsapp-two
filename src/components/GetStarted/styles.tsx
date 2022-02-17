@@ -29,6 +29,12 @@ export const LetsGetStarted = styled(Container)`
       opacity: 0.8;
     }
   }
+  .slogan {
+    font-size: 0.9rem;
+    font-weight: small;
+    font-style: italic;
+  }
+
   span {
     font-size: 3.5rem;
     font-weight: 800;
@@ -39,6 +45,22 @@ export const Input = styled.div`
   input {
     width: 80vw;
     max-width: 400px;
+  }
+`;
+
+export const Buttons = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 350px;
+  text-align: center;
+
+  .moveBack {
+    flex: 1;
+  }
+  .moveOn {
+    flex: 2;
   }
 `;
 
@@ -58,4 +80,20 @@ export const Button = styled.button`
 
 export const Form = styled(Container)`
   display: flex;
+`;
+
+export const Steps = styled.div`
+  position: relative;
+  /* flex: 1; */
+  display: flex;
+  flex-direction: row;
+  margin: 2rem;
+  div {
+    background: #000000;
+    opacity: 0.5;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin: 0.5rem;
+  }
 `;
