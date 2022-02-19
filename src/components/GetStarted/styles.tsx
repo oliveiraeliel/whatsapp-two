@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 interface GetStartedProps {
-  showGetStarted: boolean;
+  showGetStarted: number;
 }
 
 export const Container = styled.section`
@@ -14,7 +14,7 @@ export const Container = styled.section`
 
 export const LetsGetStarted = styled(Container)`
   display: ${(props: GetStartedProps) =>
-    props.showGetStarted ? "flex" : "none"};
+    props.showGetStarted == 0 ? "flex" : "none"};
   a {
     font-size: 1.5rem;
     font-weight: 300;
@@ -72,7 +72,8 @@ export const Button = styled.button`
   font-size: medium;
   border-radius: 0.5rem;
   margin: 1rem;
-
+  background: var(--main-color);
+  color: white;
   &:hover {
     opacity: 0.7;
   }
@@ -80,16 +81,15 @@ export const Button = styled.button`
 
 export const Form = styled(Container)`
   display: flex;
+  flex: 3;
 `;
 
 export const Steps = styled.div`
   position: relative;
-  /* flex: 1; */
   display: flex;
   flex-direction: row;
-  margin: 2rem;
   div {
-    background: #000000;
+    background: var(--main-color);
     opacity: 0.5;
     width: 10px;
     height: 10px;
