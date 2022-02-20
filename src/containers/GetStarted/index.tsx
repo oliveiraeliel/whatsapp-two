@@ -42,6 +42,9 @@ const GetStarted = () => {
       setFormPosition(formPosition + 1);
       return;
     }
+    if(formPosition == 2){
+      window.location.href = "/whatsapp-two/#/home"
+    }
   };
 
   const renderSwitch = () => {
@@ -59,12 +62,12 @@ const GetStarted = () => {
     <Container>
       <LetsGetStarted showGetStarted={formPosition}>
         <a>Welcome to </a>
-        <span>Whatsapp 2</span>
+        <span>WhatsApp 2</span>
         <a className="slogan">The next era of communication</a>
 
         <Button onClick={handleGetStarted}>Let's get started</Button>
         <a className="have-an-account" href="/whatsapp-two/#/login">
-          I have an account
+          I already have an account
         </a>
         <Steps>
           <div style={{ opacity: formPosition == 0 ? "1" : "0.5" }}></div>

@@ -38,10 +38,16 @@ const Login = () => {
         />
       </Input>
 
-      <Button disabled={disabledBtn}>Login</Button>
-      <a href="/whatsapp-two/">
-        I don't have an account
-      </a>
+      <Button
+        disabled={disabledBtn}
+        style={{ opacity: disabledBtn ? "0.5" : "1" }}
+        onClick={() => {
+          window.location.href = "/whatsapp-two/#/home";
+        }}
+      >
+        Login
+      </Button>
+      <a href="/whatsapp-two/">I don't have an account yet</a>
     </Container>
   );
 };
