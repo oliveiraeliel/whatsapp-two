@@ -1,5 +1,7 @@
 import { TextField } from "@mui/material";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { api } from "../../services/api";
+import AuthContext from "../../contexts/auth";
 
 import { Container, Button, Input, Steps } from "./styles";
 
@@ -8,6 +10,8 @@ const Login = () => {
   const [password, setPassword] = useState<string>("");
   const [disabledBtn, setDisabledBtn] = useState<boolean>(true);
 
+  const context = useContext(AuthContext);
+
   useEffect(() => {
     if (username == "" || password == "") {
       setDisabledBtn(true);
@@ -15,6 +19,18 @@ const Login = () => {
     }
     setDisabledBtn(false);
   }, [username, password]);
+
+  const handleLogin = () => {
+    context.Login(username, password);
+    // api
+    //   .post("/user/login", { username: username, password: password })
+    //   .then((res) => {
+    //     if (res.status == 200) {
+    //       window.location.href = "/whatsapp-two/#/home";
+    //     }
+    //   })
+    //   .catch((err) => alert("User not found"));
+  };
 
   return (
     <Container>
@@ -41,9 +57,7 @@ const Login = () => {
       <Button
         disabled={disabledBtn}
         style={{ opacity: disabledBtn ? "0.5" : "1" }}
-        onClick={() => {
-          window.location.href = "/whatsapp-two/#/home";
-        }}
+        onClick={handleLogin}
       >
         Login
       </Button>

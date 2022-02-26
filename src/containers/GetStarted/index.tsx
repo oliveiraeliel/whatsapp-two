@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { TextField } from "@mui/material";
 import { fieldVerify } from "../../utils/index";
 
+import { api } from "../../services/api";
+
 import {
   Container,
   Input,
@@ -42,8 +44,15 @@ const GetStarted = () => {
       setFormPosition(formPosition + 1);
       return;
     }
-    if(formPosition == 2){
-      window.location.href = "/whatsapp-two/#/home"
+    if (formPosition == 2) {
+      api
+        .post("/user/", { username: username, password: password })
+        .then((res) => {
+          if (res.status == 200) {
+            window.location.href = "/whatsapp-two/#/home";
+          }
+        })
+        .catch((err) => alert("This username is unavailible"));
     }
   };
 

@@ -1,17 +1,26 @@
-import React, { useEffect, useRef } from "react";
-import { Message } from "../../components";
+import React, { useState, useEffect, useRef } from "react";
+import { Message, Contact } from "../../components";
+import { TextField } from "@mui/material";
 
 import {
   Container,
   ContactsField,
   MessageField,
   InsertTextField,
+  SearchBar,
+  Scroll,
 } from "./styles";
 
 import * as messages from "./messages.json";
 
 const Home = () => {
   const scrollRef = useRef<HTMLInputElement>(null);
+
+  const [searchUser, setSearchUser] = useState<string>("");
+
+  useEffect(() => {
+    console.log(searchUser);
+  }, [searchUser]);
 
   useEffect(() => {
     if (scrollRef.current) {
@@ -37,9 +46,27 @@ const Home = () => {
 
   return (
     <Container>
-      <ContactsField></ContactsField>
+      <ContactsField>
+        <div className="slogan">
+          <h1>WhatsApp 2</h1>
+          <span>The next era of communication</span>
+        </div>
+        <SearchBar>
+          <input
+            value={searchUser}
+            onChange={(e) => setSearchUser(e.target.value)}
+          ></input>
+        </SearchBar>
+        <Scroll>
+          <Contact
+            username="oliveiraeliel"
+            lastMessage="Oi, tudo bem? Estou entrando em contato para informar que"
+            onClick={() => console.log("adsa")}
+          />
+        </Scroll>
+      </ContactsField>
       <MessageField>
-        <div className="scroll" ref={scrollRef}>
+        <Scroll ref={scrollRef}>
           {messages.default.map((message, index) => {
             return (
               <div>
@@ -53,7 +80,7 @@ const Home = () => {
               </div>
             );
           })}
-        </div>
+        </Scroll>
         <div className="fixedBar">
           <InsertTextField></InsertTextField>
         </div>
