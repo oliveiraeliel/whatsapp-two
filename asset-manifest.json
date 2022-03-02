@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/whatsapp-two/static/js/main.cc1e33d9.js",
+    "main.js": "/whatsapp-two/static/js/main.d725739e.js",
     "index.html": "/whatsapp-two/index.html",
-    "main.cc1e33d9.js.map": "/whatsapp-two/static/js/main.cc1e33d9.js.map"
+    "main.d725739e.js.map": "/whatsapp-two/static/js/main.d725739e.js.map"
   },
   "entrypoints": [
-    "static/js/main.cc1e33d9.js"
+    "static/js/main.d725739e.js"
   ]
 }
