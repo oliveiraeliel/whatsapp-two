@@ -22,14 +22,7 @@ const Login = () => {
 
   const handleLogin = () => {
     context.Login(username, password);
-    // api
-    //   .post("/user/login", { username: username, password: password })
-    //   .then((res) => {
-    //     if (res.status == 200) {
-    //       window.location.href = "/whatsapp-two/#/home";
-    //     }
-    //   })
-    //   .catch((err) => alert("User not found"));
+
   };
 
   return (

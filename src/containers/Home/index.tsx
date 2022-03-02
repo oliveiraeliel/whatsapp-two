@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Message, Contact } from "../../components";
 import { TextField } from "@mui/material";
+import { FaPaperPlane } from "react-icons/fa";
 
 import {
   Container,
@@ -9,6 +10,7 @@ import {
   InsertTextField,
   SearchBar,
   Scroll,
+  MessageHeader,
 } from "./styles";
 
 import * as messages from "./messages.json";
@@ -17,6 +19,7 @@ const Home = () => {
   const scrollRef = useRef<HTMLInputElement>(null);
 
   const [searchUser, setSearchUser] = useState<string>("");
+  const [message, setMessage] = useState<string>("");
 
   useEffect(() => {
     console.log(searchUser);
@@ -44,6 +47,21 @@ const Home = () => {
     );
   });
 
+  const sendMessage = () => {
+    console.log(message);
+  };
+
+  const contacts = () => {
+    const contactsA: Array<string> = [];
+    messages.default.map((m, index) => {
+      if (contactsA.includes(m.name)) {
+        return;
+      }
+      contactsA.push(m.name);
+      console.log(contactsA);
+    });
+  };
+
   return (
     <Container>
       <ContactsField>
@@ -53,11 +71,19 @@ const Home = () => {
         </div>
         <SearchBar>
           <input
+            placeholder="Search for someone here"
             value={searchUser}
             onChange={(e) => setSearchUser(e.target.value)}
+            onKeyPress={(e) => {
+              if (e.key === "Enter") {
+                console.log(searchUser);
+                return;
+              }
+            }}
           ></input>
         </SearchBar>
         <Scroll>
+          {contacts()}
           <Contact
             username="oliveiraeliel"
             lastMessage="Oi, tudo bem? Estou entrando em contato para informar que"
@@ -66,6 +92,9 @@ const Home = () => {
         </Scroll>
       </ContactsField>
       <MessageField>
+        <MessageHeader>
+          <h1>@username</h1>
+        </MessageHeader>
         <Scroll ref={scrollRef}>
           {messages.default.map((message, index) => {
             return (
@@ -82,7 +111,24 @@ const Home = () => {
           })}
         </Scroll>
         <div className="fixedBar">
-          <InsertTextField></InsertTextField>
+          <InsertTextField>
+            <input
+              placeholder="Type your text here"
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+              onKeyPress={(e) => {
+                if (e.key === "Enter") {
+                  sendMessage();
+                  return;
+                }
+              }}
+            ></input>
+            <a onClick={sendMessage}>
+              <FaPaperPlane
+                style={{ display: message == "" ? "none" : "block" }}
+              />
+            </a>
+          </InsertTextField>
         </div>
       </MessageField>
     </Container>

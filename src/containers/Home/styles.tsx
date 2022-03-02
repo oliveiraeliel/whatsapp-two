@@ -3,6 +3,7 @@ import * as styles from "../GetStarted/styles";
 
 export const Container = styled(styles.Container)`
   flex-direction: row;
+  background-color: var(--secondary-color);
 `;
 
 export const MessageField = styled.div`
@@ -31,8 +32,12 @@ export const ContactsField = styled.div`
     margin: 0;
   }
   .slogan {
-    text-align: center;
-    margin: 2rem 0 0 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    height: 15vh;
   }
 
   @media (max-width: 756px) {
@@ -41,8 +46,11 @@ export const ContactsField = styled.div`
 `;
 
 export const InsertTextField = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   /* position: fixed; */
-  background: var(--main-color);
+  background: var(--terciary-color);
   height: 50px;
   width: 100%;
   /* bottom: 0; */
@@ -51,17 +59,48 @@ export const InsertTextField = styled.div`
     -webkit-backface-visibility: hidden;
     /* bottom: 0; */
   }
+
+  input {
+    height: 50%;
+    width: 80%;
+    border: none;
+    border-radius: 5px;
+    font-size: 12pt;
+    font-weight: 400;
+    padding: 5px;
+    background-color: var(--secondary-color);
+    color: white;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 25px;
+    width: 50px;
+    height: 50%;
+
+    &:hover {
+      color: black;
+    }
+  }
 `;
 
 export const SearchBar = styled.div`
   position: block;
   display: flex;
-  flex-direction: row;
   justify-content: center;
-  align-items: flex-end;
+  align-items: center;
   width: 100%;
-  height: 10vh;
+  height: 8vh;
   text-align: center;
+  background-color: var(--terciary-color);
+
   input {
     width: 80%;
     height: 1.5rem;
@@ -69,7 +108,15 @@ export const SearchBar = styled.div`
     margin: 0.5rem;
     font-size: 1.2rem;
     font-weight: 300;
-    padding: 5px;
+    padding: 8px;
+    background-color: var(--secondary-color);
+    border: none;
+    color: white;
+    font-size: 14pt;
+
+    &:focus {
+      outline: none;
+    }
   }
 `;
 
@@ -89,5 +136,18 @@ export const Scroll = styled.div`
     opacity: 0.2;
     background: #000000;
     border-radius: 10px;
+  }
+`;
+
+export const MessageHeader = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 10vh;
+  background-color: var(--terciary-color);
+  color: white;
+  padding: 0 1rem;
+  h1 {
+    margin: 0 0.2rem;
   }
 `;
