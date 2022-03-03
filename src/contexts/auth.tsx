@@ -3,7 +3,16 @@ import { api } from "../services/api";
 
 interface AuthContextData {
   signed: boolean;
-  Login(username: string, password: string): Promise<void>;
+  user: object | null;
+  Authenticate(
+    username: string,
+    password: string,
+    route: string
+  ): Promise<void>;
+}
+
+interface Header {
+  Authorization: string;
 }
 
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
@@ -11,40 +20,33 @@ const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 export const AuthProvider: React.FC = ({ children }) => {
   const [user, setUser] = useState<object | null>(null);
 
-  async function Login(username: string, password: string) {
-    api
-      .post("/user/login", {
-        username: username,
-        password: password,
-      })
-      .then((res) => {
-        if (res.data.token) {
-          // api.defaults.headers.
-          console.log("1231");
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+  async function Authenticate(
+    username: string,
+    password: string,
+    route: string
+  ) {
+    const Response = await api.post(`/user/${route}/`, {
+      username: username,
+      password: password,
+    });
 
-    // switch (response.status) {
-    //   case 200:
-    //     window.location.href = "/whatsapp-two/#/home";
-    //     break;
-    //   case 422:
-    //     alert("Incorrect Data");
-    //     break;
-    //   case 500:
-    //     alert("Server error :C");
-    //     break;
-    //   default:
-    //     break;
-    // }
-    // api.defaults.headers = `Bearer ${response.data.token}`
+    if (!Response.data.token) {
+      alert("Username or password incorrect!");
+      return;
+    }
+    setUser(Response.data.user);
+    // api.defaults.headers = {
+    //   Authorization: `Bearer ${Response.data.token}`,
+    // };
+
+    localStorage.setItem("@App:user", JSON.stringify(Response.data.user));
+    localStorage.setItem("@App:token", Response.data.token);
+
+    window.location.href = "/whatsapp-two/#/home";
   }
 
   return (
-    <AuthContext.Provider value={{ signed: true, Login }}>
+    <AuthContext.Provider value={{ signed: Boolean(user), Authenticate, user }}>
       {children}
     </AuthContext.Provider>
   );

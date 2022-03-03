@@ -27,7 +27,9 @@ export const ContactsField = styled.div`
   height: 100%;
   margin: 0.1rem;
   height: 100vh;
-
+  position: relative;
+  display: flex;
+  flex-direction: column;
   h1 {
     margin: 0;
   }
@@ -38,6 +40,7 @@ export const ContactsField = styled.div`
     align-items: center;
     color: white;
     height: 15vh;
+    background-color: var(--terciary-color);
   }
 
   @media (max-width: 756px) {
@@ -146,8 +149,15 @@ export const MessageHeader = styled.div`
   height: 10vh;
   background-color: var(--terciary-color);
   color: white;
-  padding: 0 1rem;
   h1 {
     margin: 0 0.2rem;
+  }
+  a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    width: 80px;
+    height: 50px;
   }
 `;

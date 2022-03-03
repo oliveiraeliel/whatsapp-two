@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { TextField } from "@mui/material";
 import { fieldVerify } from "../../utils/index";
+import AuthContext from "../../contexts/auth";
 
 import { api } from "../../services/api";
 
@@ -19,6 +20,8 @@ const GetStarted = () => {
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [disabledBtn, setDisabledBtn] = useState<boolean>(true);
+
+  const context = useContext(AuthContext);
 
   useEffect(() => {
     setDisabledBtn(fieldVerify(username));
@@ -45,14 +48,8 @@ const GetStarted = () => {
       return;
     }
     if (formPosition == 2) {
-      api
-        .post("/user/", { username: username, password: password })
-        .then((res) => {
-          if (res.status == 200) {
-            window.location.href = "/whatsapp-two/#/home";
-          }
-        })
-        .catch((err) => alert("This username is unavailible"));
+    context.Authenticate(username, password, "sign-up");
+
     }
   };
 

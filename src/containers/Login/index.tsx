@@ -21,7 +21,7 @@ const Login = () => {
   }, [username, password]);
 
   const handleLogin = () => {
-    context.Login(username, password);
+    context.Authenticate(username, password, "login");
 
   };
 

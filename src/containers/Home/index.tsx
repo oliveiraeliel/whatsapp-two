@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { Message, Contact } from "../../components";
 import { TextField } from "@mui/material";
 import { FaPaperPlane } from "react-icons/fa";
-
+import { BsChevronDoubleLeft } from "react-icons/bs";
 import {
   Container,
   ContactsField,
@@ -89,10 +89,18 @@ const Home = () => {
             lastMessage="Oi, tudo bem? Estou entrando em contato para informar que"
             onClick={() => console.log("adsa")}
           />
+          <Contact
+            username="oliveiraeliel"
+            lastMessage="Oi, tudo bem? Estou entrando em contato para informar que"
+            onClick={() => console.log("adsa")}
+          />
         </Scroll>
       </ContactsField>
       <MessageField>
         <MessageHeader>
+          <a>
+            <BsChevronDoubleLeft style={{ fontSize: "16pt" }} />
+          </a>
           <h1>@username</h1>
         </MessageHeader>
         <Scroll ref={scrollRef}>
